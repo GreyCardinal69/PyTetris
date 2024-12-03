@@ -1,9 +1,8 @@
 from settings import *
-from base_surface import BaseSurface
 
-class Score(BaseSurface):
-    def __init__(self):
-    	#window size
+class Score:
+	def __init__(self):
+		#window size
 		# +---------------------------------------------+
 		# |                                             |
 		# |           SIZE (outer box)     20           |
@@ -20,10 +19,11 @@ class Score(BaseSurface):
 		# |            20                               |
 		# +---------------------------------------------+
 		# 		20 + GAME_WIDTH + 20 + SIDEBAR_WIDTH + 20
-        super().__init__(
-            width=SIDEBAR_WIDTH,
-            height=(GAME_HEIGHT * SCORE_HEIGHT_PERCENT - PADDING),
-            position_func=lambda rect: rect.move(
-                WINDOW_WIDTH - PADDING - rect.width, WINDOW_HEIGHT - PADDING - rect.height
-            )
-        )
+		self.surface = pygame.Surface((SIDEBAR_WIDTH, GAME_HEIGHT * SCORE_HEIGHT_PERCENT - PADDING))
+		self.display_surface = pygame.display.get_surface()
+
+		# create surface engulf rectangle for positioning
+		self.rect = self.surface.get_rect(bottomright = (WINDOW_WIDTH-PADDING,WINDOW_HEIGHT-PADDING))
+
+	def run(self):
+		self.display_surface.blit(self.surface, self.rect)

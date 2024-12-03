@@ -32,7 +32,7 @@ class Main:
 					# import sys exit to avoid error on line 19 after pygame.quit()
 					exit()
 
-			self.display_surface.fill('#204b9b')
+			self.display_surface.fill(GRAY)
 			self.game.run()
 			self.score.run()
 			self.preview.run()

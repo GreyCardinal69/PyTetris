@@ -1,9 +1,8 @@
 from settings import *
-from base_surface import BaseSurface
 
-class Preview(BaseSurface):
-    def __init__(self):
-    	#window size
+class Preview:
+	def __init__(self):
+		#window size
 		# +---------------------------------------------+
 		# |                                             |
 		# |           SIZE (outer box)     20           |
@@ -20,10 +19,11 @@ class Preview(BaseSurface):
 		# |            20                               |
 		# +---------------------------------------------+
 		# 		20 + GAME_WIDTH + 20 + SIDEBAR_WIDTH + 20
-        super().__init__(
-            width=SIDEBAR_WIDTH,
-            height=(GAME_HEIGHT * SIDEBAR_PREVIEW_HEIGHT_PERCENT),
-            position_func=lambda rect: rect.move(
-                WINDOW_WIDTH - PADDING - rect.width, PADDING
-            )
-        )
+		self.surface = pygame.Surface((SIDEBAR_WIDTH, GAME_HEIGHT * SIDEBAR_PREVIEW_HEIGHT_PERCENT))
+		self.display_surface = pygame.display.get_surface()
+
+		# create surface engulf rectangle for positioning
+		self.rect = self.surface.get_rect(topright = (WINDOW_WIDTH-PADDING,PADDING))
+
+	def run(self):
+		self.display_surface.blit(self.surface, self.rect)
