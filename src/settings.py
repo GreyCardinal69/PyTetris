@@ -89,4 +89,6 @@ TETROMINOS = {
 
 # spawn tetronimos at the middle of the columns, above visible grid
 # to create falling effect
-BLOCK_OFFSET = pygame.Vector2(COLUMNS // 2, 5)
+BLOCK_OFFSET = pygame.Vector2(COLUMNS // 2, -1)
+UPDATE_START_SPEED = 400
+USER_INPUT_COOLDOWN = 200
