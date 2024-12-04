@@ -1,6 +1,8 @@
 from settings import *
 from random import *
 from timer import Timer
+from pygame import mixer 
+from os import path
 
 # main tetris display
 class Game:
@@ -215,6 +217,11 @@ class Tetromino:
 			for block in self.blocks:
 				# or just 1
 				self.game_data[int(block.pos.y)][int(block.pos.x)] = block
+
+				mixer.init() 
+				mixer.music.load(path.join("..","sound","land.ogg")) 
+				mixer.music.set_volume(0.7) 
+				mixer.music.play() 
 
 			self.create_new()
 
