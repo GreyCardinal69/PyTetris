@@ -11,7 +11,7 @@ class Timer:
 
 	def activate(self):
 		self.active = True
-		# get elapsed time since start of game
+		# Get elapsed time since start of game
 		self.start_time = pygame.time.get_ticks()
 
 	def deactivate(self):
@@ -20,14 +20,13 @@ class Timer:
 
 	def update(self):
 		current_time = pygame.time.get_ticks()
-		# if more than duration amount of ms passed since start time,
-		# the timer has elapsed
+		# If more than duration amount of ms passed since start time,
+		# The timer has elapsed
 		if current_time - self.start_time >= self.duration and self.active:
 			if self.func and self.start_time != 0:
 				self.func()
-			# reset
+			# Reset
 			self.deactivate()
 
 			if self.repeat:
 				self.activate()
-

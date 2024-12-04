@@ -3,7 +3,7 @@ from os import path
 
 class Preview:
 	def __init__(self):
-		#window size
+		# Window size
 		# +---------------------------------------------+
 		# |                                             |
 		# |           SIZE (outer box)     20           |
@@ -24,10 +24,10 @@ class Preview:
 		self.surface = pygame.Surface((SIDEBAR_WIDTH, GAME_HEIGHT * SIDEBAR_PREVIEW_HEIGHT_PERCENT))
 
 		# load shape images for previews
-		# converting to alpha for pygame 
+		# Converting to alpha for pygame 
 		self.shape_panels = {shape: pygame.image.load(path.join('..', 'data', f'{shape}.png')).convert_alpha() for shape in TETROMINOS.keys()}
 
-		# create surface engulf rectangle for positioning
+		# Create surface engulf rectangle for positioning
 		self.rect = self.surface.get_rect(topright = (WINDOW_WIDTH-PADDING,PADDING))
 
 	def display_pieces(self, next_shapes):
@@ -41,7 +41,7 @@ class Preview:
 			self.surface.blit(shape_surface,rect )
 
 	def run(self, next_shapes):
-		self.surface.fill(GRAY)
+		self.surface.fill(BACKGROUND_COLOR)
 		self.display_pieces(next_shapes)
 		self.display_surface.blit(self.surface, self.rect)
-		pygame.draw.rect(self.display_surface, LINE_COLOR, self.rect, 2, 2)
+		pygame.draw.rect(self.display_surface, ACCCENT_COLOR, self.rect, 2, 2)
